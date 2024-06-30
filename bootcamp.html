@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Africa Samurai Bootcamp</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #e60012;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            width: 100%;
+        }
+        h1 {
+            font-size: 24px;
+        }
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            flex: 1;
+        }
+        .bootcamp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .bootcamp-item {
+            background-color: #f4f4f4;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .bootcamp-item:hover {
+            transform: translateY(-5px);
+        }
+        .bootcamp-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .bootcamp-content {
+            padding: 1rem;
+        }
+        .bootcamp-content h2 {
+            color: #e60012;
+            margin-bottom: 0.5rem;
+        }
+        button {
+            background-color: #e60012;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #ff1a2d;
+        }
+        #modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 0;
+            padding: 20px;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            position: relative;
+        }
+        .close {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover {
+            color: #000;
+        }
+        .modal-image {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #e60012;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #ff1a2d;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            width: 100%;
+        }
+        .social-links {
+            margin-top: 10px;
+        }
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .social-links a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .bootcamp-grid {
+                grid-template-columns: 1fr;
+            }
+            .modal-content {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Africa Samurai Bootcamp</h1>
+    </header>
+
+    <main>
+        <p>Découvrez nos bootcamps intensifs alliant expertise africaine et japonaise pour une expérience éducative unique !</p>
+
+        <div class="bootcamp-grid">
+            <div class="bootcamp-item">
+                <img src="math.webp" alt="Mathématiques et Ingénierie">
+                <div class="bootcamp-content">
+                    <h2>Mathématiques et Ingénierie</h2>
+                    <p>Plongez dans le monde des mathématiques appliquées et de l'ingénierie avec une approche afro-japonaise innovante.</p>
+                    <button onclick="showModal('math')">En savoir plus</button>
+                </div>
+            </div>
+
+            <div class="bootcamp-item">
+                <img src="culture.webp" alt="Langue et Culture Japonaise">
+                <div class="bootcamp-content">
+                    <h2>Langue et Culture Japonaise</h2>
+                    <p>Immergez-vous dans la langue et la culture japonaise tout en développant vos compétences interculturelles.</p>
+                    <button onclick="showModal('culture')">En savoir plus</button>
+                </div>
+            </div>
+
+            <div class="bootcamp-item">
+                <img src="dessin.webp" alt="Dessin et Arts Visuels">
+                <div class="bootcamp-content">
+                    <h2>Dessin et Arts Visuels</h2>
+                    <p>Explorez les techniques de dessin traditionnelles et modernes, en fusionnant les styles africains et japonais.</p>
+                    <button onclick="showModal('art')">En savoir plus</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Africa Samurai Bootcamp. Tous droits réservés.</p>
+        <p>Contact : info@africasamuraibootcamp.com</p>
+        <div class="social-links">
+            <a href="#" target="_blank">Facebook</a>
+            <a href="#" target="_blank">Twitter</a>
+            <a href="#" target="_blank">Instagram</a>
+            <a href="#" target="_blank">LinkedIn</a>
+        </div>
+    </footer>
+
+    <div id="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img id="modalImage" class="modal-image" src="" alt="">
+            <h2 id="modalTitle"></h2>
+            <p id="modalContent"></p>
+            <form id="registrationForm" onsubmit="return submitForm(event)">
+                <input type="hidden" id="bootcampType" name="bootcampType">
+                <label for="name">Nom et Prénom :</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email :</label>
+                <input type="email" id="email" name="email" required>
+                <label for="education">Niveau d'études :</label>
+                <input type="text" id="education" name="education" required>
+                <label for="presentation">Brève présentation de vous-même :</label>
+                <textarea id="presentation" name="presentation" rows="4" required></textarea>
+                <input type="submit" value="S'inscrire">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const modalContent = {
+            math: {
+                title: "Bootcamp Mathématiques et Ingénierie",
+                content: "Ce bootcamp intensif vous permettra de renforcer vos compétences en mathématiques appliquées, d'explorer les principes fondamentaux de l'ingénierie et de développer votre pensée analytique. Vous travaillerez sur des projets pratiques inspirés par l'approche afro-japonaise de l'innovation technologique.",
+                image: "math.webp"
+            },
+            culture: {
+                title: "Bootcamp Langue et Culture Japonaise",
+                content: "Immergez-vous dans la langue et la culture japonaise ! Vous apprendrez les bases de la conversation en japonais, vous initierez à l'écriture (hiragana, katakana, kanji), et découvrirez en profondeur les traditions, l'étiquette et les arts japonais. Ce bootcamp vise à développer vos compétences linguistiques et interculturelles.",
+                image: "culture.webp"
+            },
+            art: {
+                title: "Bootcamp Dessin et Arts Visuels",
+                content: "Développez vos talents artistiques en explorant les techniques de dessin africaines et japonaises. Vous apprendrez les bases du dessin, découvrirez les styles artistiques traditionnels et contemporains des deux cultures, et créerez votre propre style en fusionnant ces influences. À la fin du bootcamp, vous aurez un portfolio reflétant votre progression et votre créativité.",
+                image: "dessin.webp"
+            }
+        };
+
+        function showModal(type) {
+            const modal = document.getElementById("modal");
+            const title = document.getElementById("modalTitle");
+            const content = document.getElementById("modalContent");
+            const image = document.getElementById("modalImage");
+            const bootcampType = document.getElementById("bootcampType");
+
+            title.textContent = modalContent[type].title;
+            content.textContent = modalContent[type].content;
+            image.src = modalContent[type].image;
+            image.alt = modalContent[type].title;
+            bootcampType.value = type;
+
+            modal.style.display = "block";
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            console.log("Données du formulaire :", data);
+            alert("Merci pour votre inscription ! Nous vous contacterons bientôt.");
+            closeModal();
+            event.target.reset();
+            return false;
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById("modal");
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
