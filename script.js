@@ -1,11 +1,15 @@
 // script.js
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
     const bootcampsList = document.getElementById('bootcampsList');
     const modal = document.getElementById('bootcampModal');
     const closeBtn = document.querySelector('.close');
     const inscriptionForm = document.getElementById('inscriptionForm');
+    const contactButton = document.querySelector('.contact-button');
+    const ctaButtonContact = document.querySelector('.cta-button-contact')
+    const contactModal = document.getElementById('contactModal');
+    const contactCloseBtn = contactModal.querySelector('.close');
 
     // Données des bootcamps
     const bootcamps = [
@@ -106,6 +110,30 @@ document.addEventListener('DOMContentLoaded', function() {
         inscriptionForm.querySelector('input[name="bootcampId"]').value = bootcampId;
     }
 
+    function showContactModal() {
+        contactModal.style.display = 'block';
+        setTimeout(() => {
+            contactModal.style.opacity = '1';
+        }, 10);
+    }
+
+    contactButton.addEventListener('click', () => {
+        showContactModal()
+    });
+
+    ctaButtonContact.addEventListener('click', () => {
+        showContactModal()
+    })
+
+    function closeContactModal() {
+        contactModal.style.opacity = '0';
+        setTimeout(() => {
+            contactModal.style.display = 'none';
+        }, 300);
+    }
+
+    contactCloseBtn.onclick = closeContactModal;
+
     // Fermeture du modal
     function closeModal() {
         modal.style.opacity = '0';
@@ -116,26 +144,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
     closeBtn.onclick = closeModal;
 
-    window.onclick = function(event) {
+    window.onclick = function (event) {
         if (event.target == modal) {
             closeModal();
+        }
+        if (event.target == contactModal) {
+            closeContactModal();
         }
     }
 
     // Gestion du formulaire d'inscription
-    inscriptionForm.addEventListener('submit', function(e) {
+    inscriptionForm.addEventListener('submit', function (e) {
         e.preventDefault();
         const formData = new FormData(inscriptionForm);
         const data = Object.fromEntries(formData);
-        
+
         // Simulation d'envoi des données (à remplacer par un vrai appel API)
         console.log('Données d\'inscription:', data);
-        
+
         // Animation de confirmation
         const submitButton = inscriptionForm.querySelector('button[type="submit"]');
         submitButton.textContent = 'Inscription réussie !';
         submitButton.style.backgroundColor = '#4CAF50';
-        
+
         setTimeout(() => {
             closeModal();
             submitButton.textContent = 'Rejoindre l\'aventure';
@@ -171,3 +202,4 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', animateOnScroll);
     animateOnScroll(); // Appel initial pour les éléments déjà visibles
 });
+
