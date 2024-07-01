@@ -28,8 +28,9 @@ body {
     padding: 0 20px;
 }
 
-.logo img{
-    width: 70px;
+.logo img {
+    width: 40px;
+    margin-right: 10px;
 }
 
 /* Header Styles */
@@ -61,6 +62,7 @@ header .container {
 .nav-links {
     display: flex;
     list-style: none;
+    align-items: center;
 }
 
 .nav-links li {
@@ -78,20 +80,22 @@ header .container {
     color: var(--primary-color);
 }
 
-.connect {
-    background-color: var(--secondary-color);
-    color: var(--white);
-    border: none;
-    padding: 10px 20px;
-    border-radius: 25px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+.nav-links .connect,
+.nav-links .contact-button {
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.connect:hover {
+.nav-links .contact-button {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+}
+
+.nav-links .connect:hover,
+.nav-links .contact-button:hover {
     background-color: var(--primary-color);
-    transform: translateY(-2px);
+    color: var(--white);
 }
 
 /* Hero Section */
@@ -406,10 +410,6 @@ header .container {
         margin: 1rem 0;
     }
 
-    .connect {
-        margin-top: 1rem;
-    }
-
     .hamburger.active span:nth-child(1) {
         transform: rotate(45deg) translate(5px, 5px);
     }
@@ -556,4 +556,84 @@ footer {
 footer.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+
+/* Styles pour le bouton de contact */
+.contact-button {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-left: 10px;
+}
+
+.contact-button:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+/* Styles pour le modal de contact */
+#contactModal .modal-content {
+    max-width: 500px;
+}
+
+#contactModal h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+#contactModal .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+#contactModal .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#contactModal .contact-item h3 {
+    min-width: 80px;
+    color: var(--secondary-color);
+}
+
+#contactModal .contact-item a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+#contactModal .contact-item a:hover {
+    color: var(--primary-color);
+}
+
+#contactModal .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+#contactModal .social-icon {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--secondary-color);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#contactModal .social-icon:hover {
+    background-color: var(--primary-color);
 }
