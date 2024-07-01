@@ -1,9 +1,12 @@
 /* styles.css */
 :root {
-    --primary-color: #e60012;
-    --secondary-color: #4a0e4e;
-    --text-color: #333;
-    --background-color: #f4f4f4;
+    --primary-color: #FF6B6B;
+    --secondary-color: #4ECDC4;
+    --accent-color: #FFD93D;
+    --text-color: #2C3E50;
+    --background-color: #F7F7F7;
+    --white: #FFFFFF;
+    --black: #000000;
 }
 
 * {
@@ -16,6 +19,7 @@ body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
     color: var(--text-color);
+    background-color: var(--background-color);
 }
 
 .container {
@@ -24,8 +28,13 @@ body {
     padding: 0 20px;
 }
 
+.logo img{
+    width: 70px;
+}
+
+/* Header Styles */
 header {
-    background-color: #fff;
+    background-color: var(--white);
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     position: fixed;
     width: 100%;
@@ -41,94 +50,122 @@ header .container {
 }
 
 .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--primary-color);
 }
 
-nav a {
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
     margin-left: 20px;
+}
+
+.nav-links a {
     text-decoration: none;
     color: var(--text-color);
     font-weight: 500;
     transition: color 0.3s ease;
 }
 
-nav a:hover {
+.nav-links a:hover {
     color: var(--primary-color);
 }
 
-.cta-button {
-    background-color: var(--primary-color);
-    color: white;
+.connect {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    border: none;
     padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
+    border-radius: 25px;
     font-weight: 600;
-    transition: background-color 0.3s ease;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.cta-button:hover {
-    background-color: #ff1a2d;
+.connect:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-2px);
 }
 
+/* Hero Section */
 .hero {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('hero_bg.webp');
-    background-size: cover;
-    background-repeat: no-repeat;
+    padding: 120px 0 50px;
+    background-color: var(--white);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 50%;
+    /* background-color: var(--accent-color); */
+    background-image: url("hero_image.webp");
     background-position: top;
-    color: white;
-    padding: 9rem 0;
-    margin-top: 60px;
+    z-index: 1;
+    clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
 }
 
-.hero h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
+.hero .container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
 }
 
-.hero p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
+.hero-content {
     max-width: 600px;
 }
 
-.partners {
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.hero p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+
+.cta-button {
+    display: inline-block;
     background-color: var(--secondary-color);
-    color: white;
-    padding: 4rem 0;
-    text-align: center;
+    color: var(--white);
+    padding: 12px 24px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.partner-logos {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 2rem;
-    flex-wrap: wrap;
+.cta-button:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-3px);
 }
 
-.partner-logos img {
-    max-width: 120px;
-    margin: 1rem;
-}
-
+/* Bootcamps Section */
 .bootcamps {
-    padding: 6rem 0;
-    background-color: var(--background-color);
+    padding: 80px 0;
 }
 
 .bootcamps h2 {
     text-align: center;
-    margin-bottom: 1rem;
-}
-
-.bootcamps .describ-boot {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto 3rem;
-    font-size: 30px;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
 }
 
 .bootcamp-grid {
@@ -138,152 +175,385 @@ nav a:hover {
 }
 
 .bootcamp-item {
-    background-color: #fff;
-    border-radius: 10px;
+    background-color: var(--white);
+    border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 2rem;
 }
 
 .bootcamp-item:hover {
     transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
 
-.bootcamp-item img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-
-.bootcamp-content {
-    padding: 1.5rem;
-}
-
-.bootcamp-content h3 {
+.bootcamp-item h3 {
     color: var(--primary-color);
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
 }
 
-.bootcamp-cta {
-    display: inline-block;
-    margin-top: 1rem;
-    padding: 0.5rem 1rem;
-    background-color: var(--primary-color);
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+.bootcamp-item p {
+    margin-bottom: 1.5rem;
 }
 
-.bootcamp-cta:hover {
-    background-color: #ff1a2d;
-}
-
+/* Modal Styles */
 .modal {
     display: none;
     position: fixed;
-    z-index: 1001;
+    z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
     background-color: rgba(0,0,0,0.6);
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .modal-content {
-    background-color: #fff;
+    background-color: var(--white);
     margin: 5% auto;
     padding: 2rem;
     width: 90%;
     max-width: 600px;
-    border-radius: 10px;
+    border-radius: 15px;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.3);
     position: relative;
+    transform: translateY(-50px);
+    transition: transform 0.3s ease;
+}
+
+.modal.active .modal-content {
+    transform: translateY(0);
 }
 
 .close {
-    color: #aaa;
-    float: right;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    color: var(--text-color);
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
+    transition: color 0.3s ease;
 }
 
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
+.close:hover {
+    color: var(--primary-color);
 }
 
-.modal-image {
-    width: 100%;
-    max-height: 300px;
-    object-fit: cover;
-    border-radius: 5px;
+#modalTitle {
+    color: var(--primary-color);
     margin-bottom: 1rem;
 }
 
-form {
-    margin-top: 1.5rem;
+#modalDescription ul {
+    list-style-type: none;
+    padding-left: 0;
 }
 
-label {
+#modalDescription li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+#modalDescription li::before {
+    content: '🔹';
+    position: absolute;
+    left: 0;
+    color: var(--secondary-color);
+}
+
+/* Form Styles */
+#inscriptionForm {
+    margin-top: 2rem;
+}
+
+#inscriptionForm input,
+#inscriptionForm select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 1rem;
+    border: 2px solid var(--secondary-color);
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+#inscriptionForm button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#inscriptionForm button:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+/* Ajoutez ces styles à votre fichier CSS existant */
+
+.bootcamp-item ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 1rem;
+}
+
+.bootcamp-item li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.bootcamp-item li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+}
+
+.objectifs {
+    background-color: var(--light-gray);
+    padding: 80px 0;
+}
+
+.objectifs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.objectif-item {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.objectif-item h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.about {
+    padding: 80px 0;
+    text-align: center;
+}
+
+.about p {
+    max-width: 800px;
+    margin: 0 auto 2rem;
+}
+
+/* Ajustez les styles existants si nécessaire */
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero::after {
+        left: 0;
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    .hamburger {
+        display: block;
+        cursor: pointer;
+    }
+
+    .hamburger span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: var(--text-color);
+        margin: 5px 0;
+        transition: all 0.3s ease;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background-color: var(--white);
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 2rem;
+        transition: left 0.3s ease;
+    }
+
+    .nav-links.active {
+        left: 0;
+    }
+
+    .nav-links li {
+        margin: 1rem 0;
+    }
+
+    .connect {
+        margin-top: 1rem;
+    }
+
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.bootcamp-item, .hero-content {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.bootcamp-item:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.bootcamp-item:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+/* Ajoutez ces styles à la fin de votre fichier CSS existant */
+
+/* Footer Styles */
+footer {
+    background-color: var(--text-color);
+    color: var(--white);
+    padding: 50px 0 20px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+.footer-links h4, .footer-newsletter h4 {
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.footer-links a {
     display: block;
+    color: var(--white);
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--secondary-color);
+}
+
+.newsletter-form {
+    display: flex;
     margin-top: 1rem;
 }
 
-input, textarea {
-    width: 100%;
-    padding: 0.5rem;
-    margin-top: 0.5rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+.newsletter-form input {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px 0 0 5px;
 }
 
-.bootcamp-item, .partner-logos img {
-    opacity: 0;
+.newsletter-form button {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.newsletter-form button:hover {
+    background-color: var(--secondary-color);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.social-links a {
+    color: var(--white);
+    text-decoration: none;
+    margin-left: 15px;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--accent-color);
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .social-links {
+        margin-top: 1rem;
+    }
+
+    .social-links a {
+        margin: 0 10px;
+    }
+}
+
+/* Ajoutez ces styles pour une transition fluide du footer */
+footer {
     transform: translateY(20px);
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.bootcamp-item.animate, .partner-logos img.animate {
+footer.visible {
     opacity: 1;
     transform: translateY(0);
-}
-
-.partner-logos img {
-    transition-delay: 0.1s;
-}
-
-.bootcamp-item:nth-child(2) {
-    transition-delay: 0.2s;
-}
-
-.bootcamp-item:nth-child(3) {
-    transition-delay: 0.4s;
-}
-
-@media (max-width: 768px) {
-    header .container {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    nav {
-        margin-top: 1rem;
-    }
-    
-    nav a {
-        display: block;
-        margin: 0.5rem 0;
-    }
-    
-    .hero {
-        padding: 6rem 0;
-    }
-    
-    .hero h1 {
-        font-size: 2.5rem;
-    }
 }

@@ -3,94 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Africa Samurai Bootcamp</title>
+    <title>Africa Samurai Bootcamp - Aventure Tech pour Ados</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <div class="container">
-            <div class="logo">Africa Samurai Bootcamp</div>
-            <!-- <nav>
-                <a href="#bootcamps">Bootcamps</a>
-                <a href="#about">À propos</a>
-                <a href="#contact">Contact</a>
+            <div class="logo"><img class="logo"  src="logo.png" alt="">ASC_Bootcamp</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#bootcamps">Nos Aventures</a></li>
+                    <li><a href="#objectifs">Mission</a></li>
+                    <li><a href="#about">Qui sommes-nous</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
             </nav>
-            <a href="#" class="cta-button">Postuler</a> -->
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <button class="connect">Se connecter</button>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="container">
-            <h1>Préparez votre avenir.</h1>
-            <p>Une expérience éducative unique en mathématiques, ingénierie, langues et arts visuels.</p>
-            <a href="#bootcamps" class="cta-button">Choisir bootcamp</a>
-        </div>
-    </section>
-
-    <!-- <section class="partners">
-        <div class="container">
-            <h2>Ils nous soutiennent !</h2>
-            <div class="partner-logos">
-                <p>EPAC</p>
-                <p>INSTI</p>
-                <p>EDU TECH</p>
+    <main>
+       <section id="hero" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Deviens un Samurai de la Tech !</h1>
+                    <p>Rejoins notre dojo digital pour des aventures épiques en maths, programmation et culture japonaise. Du collège au lycée, lance-toi dans une quête de savoir unique !</p>
+                    <a href="#bootcamps" class="cta-button">Démarre ton aventure</a>
+                </div>
             </div>
-        </div>
-    </section> -->
+            <div class="hero-background"></div>
+        </section>
 
-    <section id="bootcamps" class="bootcamps">
-        <div class="container">
-            <p class="describ-boot">Découvrez nos bootcamps intensifs alliant expertise africaine et japonaise pour une expérience éducative unique !</p>
-            <div class="bootcamp-grid">
-                <div class="bootcamp-item">
-                    <img src="math.webp" alt="Mathématiques et Ingénierie">
-                    <div class="bootcamp-content">
-                        <h3>Mathématiques et Ingénierie</h3>
-                        <p>Plongez dans le monde des mathématiques appliquées et de l'ingénierie avec une approche afro-japonaise innovante.</p>
-                        <a href="#" class="bootcamp-cta" data-bootcamp="math">En savoir plus</a>
-                    </div>
+        <section id="bootcamps" class="bootcamps">
+            <div class="container">
+                <h2>Choisis ta voie de Samurai</h2>
+                <div id="bootcampsList" class="bootcamp-grid">
+                    <!-- Les bootcamps seront injectés ici par JavaScript -->
                 </div>
-                <div class="bootcamp-item">
-                    <img src="culture.webp" alt="Langue et Culture Japonaise">
-                    <div class="bootcamp-content">
-                        <h3>Langue et Culture Japonaise</h3>
-                        <p>Immergez-vous dans la langue et la culture japonaise tout en développant vos compétences interculturelles.</p>
-                        <a href="#" class="bootcamp-cta" data-bootcamp="culture">En savoir plus</a>
+            </div>
+        </section>
+
+        <section id="objectifs" class="objectifs">
+            <div class="container">
+                <h2>Objectifs Communs à Tous les Bootcamps</h2>
+                <div class="objectifs-grid">
+                    <div class="objectif-item">
+                        <h3>Échanges Culturels</h3>
+                        <p>Favoriser les interactions entre jeunes Béninois et Japonais</p>
                     </div>
-                </div>
-                <div class="bootcamp-item">
-                    <img src="dessin.webp" alt="Dessin et Arts Visuels">
-                    <div class="bootcamp-content">
-                        <h3>Dessin et Arts Visuels</h3>
-                        <p>Explorez les techniques de dessin traditionnelles et modernes.</p>
-                        <a href="#" class="bootcamp-cta" data-bootcamp="art">En savoir plus</a>
+                    <div class="objectif-item">
+                        <h3>Créativité et Innovation</h3>
+                        <p>Stimuler l'innovation à travers la collaboration interculturelle</p>
+                    </div>
+                    <div class="objectif-item">
+                        <h3>Communication Internationale</h3>
+                        <p>Développer des compétences en communication transculturelle</p>
+                    </div>
+                    <div class="objectif-item">
+                        <h3>Orientation Professionnelle</h3>
+                        <p>Inspirer des carrières liées aux relations bénino-japonaises</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <div id="modal" class="modal">
+        <section id="about" class="about">
+            <div class="container">
+                <h2>À Propos de Nos Bootcamps</h2>
+                <p>Nos bootcamps éducatifs benino-japonais offrent une opportunité unique de développer des compétences techniques, linguistiques et culturelles. Grâce à une approche immersive et pratique, nos participants sont préparés à exceller dans un monde de plus en plus interconnecté.</p>
+                <a href="#contact" class="cta-button">Contactez-nous</a>
+            </div>
+        </section>
+    </main>
+   <div id="bootcampModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <img id="modalImage" class="modal-image" src="" alt="">
             <h2 id="modalTitle"></h2>
-            <p id="modalContent"></p>
-            <form id="registrationForm">
-                <input type="hidden" id="bootcampType" name="bootcampType">
-                <label for="name">Nom et Prénom :</label>
-                <input type="text" id="name" name="name" required>
-                <label for="email">Email :</label>
-                <input type="email" id="email" name="email" required>
-                <label for="education">Niveau d'études :</label>
-                <input type="text" id="education" name="education" required>
-                <label for="presentation">Brève présentation de vous-même :</label>
-                <textarea id="presentation" name="presentation" rows="4" required></textarea>
-                <button type="submit" class="cta-button">S'inscrire</button>
+            <div id="modalDescription"></div>
+            <form id="inscriptionForm">
+                <input type="text" name="nom" placeholder="Ton nom" required>
+                <input type="text" name="prenom" placeholder="Ton prénom" required>
+                <input type="number" name="age" placeholder="Ton âge" required>
+                <select name="niveauEtude" required>
+                    <option value="">Ton niveau scolaire</option>
+                    <option value="college">Collège</option>
+                    <option value="lycee">Lycée</option>
+                </select>
+                <input type="tel" name="telephone" placeholder="Numéro de téléphone d'un parent" required>
+                <button type="submit">Rejoindre l'aventure</button>
             </form>
         </div>
     </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Benin-Japan Bootcamps</div>
+                <div class="footer-links">
+                    <h4>Liens Rapides</h4>
+                    <a href="#bootcamps">Nos Bootcamps</a>
+                    <a href="#objectifs">Objectifs</a>
+                    <a href="#about">À Propos</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Restez Informé</h4>
+                    <p>Inscrivez-vous à notre newsletter pour les dernières nouvelles et mises à jour :</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Votre adresse email">
+                        <button type="submit">S'abonner</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Bootcamps Éducatifs Benino-Japonais. Tous droits réservés.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon">FB</a>
+                    <a href="#" class="social-icon">TW</a>
+                    <a href="#" class="social-icon">IG</a>
+                    <a href="#" class="social-icon">LN</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>

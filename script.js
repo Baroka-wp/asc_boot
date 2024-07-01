@@ -1,82 +1,152 @@
 // script.js
-document.addEventListener('DOMContentLoaded', (event) => {
-    const modal = document.getElementById('modal');
-    const closeBtns = document.getElementsByClassName('close');
-    const bootcampBtns = document.querySelectorAll('.bootcamp-cta');
-    const registrationForm = document.getElementById('registrationForm');
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    const bootcampsList = document.getElementById('bootcampsList');
+    const modal = document.getElementById('bootcampModal');
+    const closeBtn = document.querySelector('.close');
+    const inscriptionForm = document.getElementById('inscriptionForm');
 
-    const modalContent = {
-        math: {
-            title: "Bootcamp Mathématiques et Ingénierie",
-            content: "Ce bootcamp intensif vous permettra de renforcer vos compétences en mathématiques appliquées, d'explorer les principes fondamentaux de l'ingénierie et de développer votre pensée analytique. Vous travaillerez sur des projets pratiques inspirés par l'approche afro-japonaise de l'innovation technologique.",
-            image: "math.webp"
+    // Données des bootcamps
+    const bootcamps = [
+        {
+            id: 'math',
+            title: 'Quête du Samouraï Mathématique',
+            description: 'Embarque dans une aventure épique où les maths, la logique et l\'informatique sont tes super-pouvoirs !',
+            details: [
+                'Défis mathématiques gamifiés avec des niveaux à débloquer',
+                'Missions de codage pour créer tes propres mini-jeux',
+                'Tournois de logique pour aiguiser ton esprit de stratège',
+                'Projets tech créatifs mêlant maths et programmation'
+            ]
         },
-        culture: {
-            title: "Bootcamp Langue et Culture Japonaise",
-            content: "Immergez-vous dans la langue et la culture japonaise ! Vous apprendrez les bases de la conversation en japonais, vous initierez à l'écriture (hiragana, katakana, kanji), et découvrirez en profondeur les traditions, l'étiquette et les arts japonais. Ce bootcamp vise à développer vos compétences linguistiques et interculturelles.",
-            image: "culture.webp"
+        {
+            id: 'culture',
+            title: 'L\'Odyssée du Japon Moderne',
+            description: 'Plonge dans l\'univers fascinant de la culture pop japonaise tout en apprenant la langue !',
+            details: [
+                'Apprends le japonais à travers les mangas et les animes',
+                'Découvre l\'écriture japonaise en créant ton propre personnage',
+                'Explore la culture japonaise via des jeux de rôle virtuels',
+                'Participe à des échanges en ligne avec des ados japonais'
+            ]
         },
-        art: {
-            title: "Bootcamp Dessin et Arts Visuels",
-            content: "Développez vos talents artistiques en explorant les techniques de dessin africaines et japonaises. Vous apprendrez les bases du dessin, découvrirez les styles artistiques traditionnels et contemporains des deux cultures, et créerez votre propre style en fusionnant ces influences. À la fin du bootcamp, vous aurez un portfolio reflétant votre progression et votre créativité.",
-            image: "dessin.webp"
+        {
+            id: 'art',
+            title: 'Dojo des Arts Numériques',
+            description: 'Libère l\'artiste en toi et fusionne l\'art traditionnel avec la technologie moderne !',
+            details: [
+                'Crée ton propre manga ou anime avec des outils numériques',
+                'Apprends l\'art du pixel art et de l\'animation 8-bit',
+                'Conçois des personnages 3D inspirés de l\'esthétique japonaise',
+                'Organise une expo virtuelle de tes œuvres afro-japonaises'
+            ]
         }
-    };
+    ];
 
-    function showModal(type) {
-        const title = document.getElementById('modalTitle');
-        const content = document.getElementById('modalContent');
-        const image = document.getElementById('modalImage');
-        const bootcampType = document.getElementById('bootcampType');
-
-        title.textContent = modalContent[type].title;
-        content.textContent = modalContent[type].content;
-        image.src = modalContent[type].image;
-        image.alt = modalContent[type].title;
-        bootcampType.value = type;
-
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal() {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
-
-    bootcampBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const bootcampType = btn.getAttribute('data-bootcamp');
-            showModal(bootcampType);
-        });
+    // Gestion du menu hamburger
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active');
     });
 
-    for (let i = 0; i < closeBtns.length; i++) {
-        closeBtns[i].addEventListener('click', closeModal);
+    // Affichage dynamique des bootcamps
+    function displayBootcamps() {
+        bootcampsList.innerHTML = bootcamps.map(bootcamp => `
+            <div class="bootcamp-item" data-id="${bootcamp.id}">
+                <h3>${bootcamp.title}</h3>
+                <p>${bootcamp.description}</p>
+                <a href="#" class="cta-button" data-id="${bootcamp.id}">Rejoindre l'aventure</a>
+            </div>
+        `).join('');
+
+        // Ajout des event listeners pour les boutons
+        document.querySelectorAll('.bootcamp-item .cta-button').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                showBootcampDetails(e.target.dataset.id);
+            });
+        });
+
+        // Animation au survol des bootcamps
+        document.querySelectorAll('.bootcamp-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.style.transform = 'scale(1.05)';
+                item.style.transition = 'transform 0.3s ease';
+            });
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = 'scale(1)';
+            });
+        });
     }
 
-    window.addEventListener('click', (event) => {
+    // Affichage des détails du bootcamp et du formulaire d'inscription
+    function showBootcampDetails(bootcampId) {
+        const bootcamp = bootcamps.find(b => b.id === bootcampId);
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDescription = document.getElementById('modalDescription');
+
+        modalTitle.textContent = bootcamp.title;
+        modalDescription.innerHTML = `
+            <p>${bootcamp.description}</p>
+            <h4>Ce que tu vas apprendre :</h4>
+            <ul>
+                ${bootcamp.details.map(detail => `<li>${detail}</li>`).join('')}
+            </ul>
+        `;
+
+        // Animation d'ouverture du modal
+        modal.style.display = 'block';
+        setTimeout(() => {
+            modal.style.opacity = '1';
+        }, 10);
+
+        // Réinitialisation du formulaire
+        inscriptionForm.reset();
+        inscriptionForm.querySelector('input[name="bootcampId"]').value = bootcampId;
+    }
+
+    // Fermeture du modal
+    function closeModal() {
+        modal.style.opacity = '0';
+        setTimeout(() => {
+            modal.style.display = 'none';
+        }, 300);
+    }
+
+    closeBtn.onclick = closeModal;
+
+    window.onclick = function(event) {
         if (event.target == modal) {
             closeModal();
         }
-    });
+    }
 
-    registrationForm.addEventListener('submit', (e) => {
+    // Gestion du formulaire d'inscription
+    inscriptionForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        const formData = new FormData(registrationForm);
+        const formData = new FormData(inscriptionForm);
         const data = Object.fromEntries(formData);
         
-        // Ici, vous pouvez ajouter le code pour envoyer les données à votre serveur
-        console.log("Données du formulaire :", data);
+        // Simulation d'envoi des données (à remplacer par un vrai appel API)
+        console.log('Données d\'inscription:', data);
         
-        // Simulation d'une soumission réussie
-        alert("Merci pour votre inscription ! Nous vous contacterons bientôt.");
-        closeModal();
-        registrationForm.reset();
+        // Animation de confirmation
+        const submitButton = inscriptionForm.querySelector('button[type="submit"]');
+        submitButton.textContent = 'Inscription réussie !';
+        submitButton.style.backgroundColor = '#4CAF50';
+        
+        setTimeout(() => {
+            closeModal();
+            submitButton.textContent = 'Rejoindre l\'aventure';
+            submitButton.style.backgroundColor = '';
+        }, 2000);
     });
 
-    // Fonction pour gérer le scroll smooth
+    // Initialisation de l'affichage des bootcamps
+    displayBootcamps();
+
+    // Navigation fluide pour les ancres
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -88,12 +158,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     // Animation au scroll pour les éléments
     function animateOnScroll() {
-        const elements = document.querySelectorAll('.bootcamp-item, .partner-logos img');
+        const elements = document.querySelectorAll('.bootcamp-item, .hero-content');
         elements.forEach(elem => {
             const rect = elem.getBoundingClientRect();
-            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-            if (rect.top <= windowHeight * 0.75) {
-                elem.classList.add('animate');
+            if (rect.top <= window.innerHeight * 0.75 && rect.bottom >= 0) {
+                elem.style.opacity = '1';
+                elem.style.transform = 'translateY(0)';
             }
         });
     }
