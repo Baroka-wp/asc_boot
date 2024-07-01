@@ -28,6 +28,10 @@ body {
     padding: 0 20px;
 }
 
+.logo img{
+    width: 70px;
+}
+
 /* Header Styles */
 header {
     background-color: var(--white);
@@ -46,6 +50,9 @@ header .container {
 }
 
 .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--primary-color);
