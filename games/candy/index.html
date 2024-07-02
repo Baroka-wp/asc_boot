@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Candy Maths</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="notification" class="notification"></div>
+    <div id="game-container">
+        <div id="level-select">
+            <h2>Sélectionnez un niveau</h2>
+            <button class="level-button" onclick="startGame(1)">Niveau 1</button>
+            <button class="level-button" onclick="startGame(2)">Niveau 2</button>
+            <button class="level-button" onclick="startGame(3)">Niveau 3</button>
+        </div>
+        <div id="game-board">
+            <!-- Le plateau de jeu sera généré ici par JavaScript -->
+        </div>
+        <div id="score">
+            Score : <span id="score-value">0</span>
+        </div>
+        <div id="timer">
+            Temps restant : <span id="time-value">60</span> secondes
+        </div>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="modal-message"></p>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

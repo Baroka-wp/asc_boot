@@ -1,15 +1,21 @@
-// script.js
+// Importation de la fonction startGame du fichier labyrinthe-shogun.js
+import { startGame } from './labyrinthe-shogun.js';
+
 document.addEventListener('DOMContentLoaded', function () {
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
     const bootcampsList = document.getElementById('bootcampsList');
     const modal = document.getElementById('bootcampModal');
+    const gameModal = document.getElementById('gameModal');
     const closeBtn = document.querySelector('.close');
     const inscriptionForm = document.getElementById('inscriptionForm');
     const contactButton = document.querySelector('.contact-button');
     const ctaButtonContact = document.querySelector('.cta-button-contact')
     const contactModal = document.getElementById('contactModal');
     const contactCloseBtn = contactModal.querySelector('.close');
+    // Gestion du compte à rebours
+    const countdownTimer = document.getElementById('countdown-timer');
+    const countdownDate = new Date('2024-07-31T23:59:59').getTime();
 
     // Données des bootcamps
     const bootcamps = [
@@ -71,17 +77,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 showBootcampDetails(e.target.dataset.id);
             });
         });
-
-        // Animation au survol des bootcamps
-        document.querySelectorAll('.bootcamp-item').forEach(item => {
-            item.addEventListener('mouseenter', () => {
-                item.style.transform = 'scale(1.05)';
-                item.style.transition = 'transform 0.3s ease';
-            });
-            item.addEventListener('mouseleave', () => {
-                item.style.transform = 'scale(1)';
-            });
-        });
     }
 
     // Affichage des détails du bootcamp et du formulaire d'inscription
@@ -92,22 +87,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
         modalTitle.textContent = bootcamp.title;
         modalDescription.innerHTML = `
-            <p>${bootcamp.description}</p>
-            <h4>Ce que tu vas apprendre :</h4>
-            <ul>
-                ${bootcamp.details.map(detail => `<li>${detail}</li>`).join('')}
-            </ul>
-        `;
+        <p>${bootcamp.description}</p>
+        <h4>Ce que tu vas apprendre :</h4>
+        <ul>
+            ${bootcamp.details.map(detail => `<li>${detail}</li>`).join('')}
+        </ul>
+    `;
 
-        // Animation d'ouverture du modal
-        modal.style.display = 'block';
-        setTimeout(() => {
-            modal.style.opacity = '1';
-        }, 10);
-
-        // Réinitialisation du formulaire
-        inscriptionForm.reset();
-        inscriptionForm.querySelector('input[name="bootcampId"]').value = bootcampId;
+        // Au lieu d'afficher le formulaire d'inscription, lancez le jeu
+        launchGame();
     }
 
     function showContactModal() {
@@ -117,13 +105,15 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 10);
     }
 
-    contactButton.addEventListener('click', () => {
-        showContactModal()
+    contactButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        showContactModal();
     });
 
-    ctaButtonContact.addEventListener('click', () => {
-        showContactModal()
-    })
+    ctaButtonContact.addEventListener('click', (e) => {
+        e.preventDefault();
+        showContactModal();
+    });
 
     function closeContactModal() {
         contactModal.style.opacity = '0';
@@ -151,6 +141,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (event.target == contactModal) {
             closeContactModal();
         }
+        if (event.target == gameModal) {
+            closeGameModal();
+        }
     }
 
     // Gestion du formulaire d'inscription
@@ -159,10 +152,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const formData = new FormData(inscriptionForm);
         const data = Object.fromEntries(formData);
 
-        // Simulation d'envoi des données (à remplacer par un vrai appel API)
         console.log('Données d\'inscription:', data);
 
-        // Animation de confirmation
         const submitButton = inscriptionForm.querySelector('button[type="submit"]');
         submitButton.textContent = 'Inscription réussie !';
         submitButton.style.backgroundColor = '#4CAF50';
@@ -171,8 +162,38 @@ document.addEventListener('DOMContentLoaded', function () {
             closeModal();
             submitButton.textContent = 'Rejoindre l\'aventure';
             submitButton.style.backgroundColor = '';
+            // launchGame();
         }, 2000);
     });
+
+    // Fonction pour lancer le jeu
+    function launchGame() {
+        console.log("Lancement du jeu...");
+        gameModal.style.display = 'block';
+        gameModal.style.opacity = '1';
+
+        // Assurez-vous que le canvas et les contrôles sont réinitialisés
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const gameControls = document.getElementById('gameControls');
+        gameControls.style.display = 'none';
+
+        // Démarrez le jeu
+        startGame();
+    }
+
+    // Fonction pour fermer le modal du jeu
+    function closeGameModal() {
+        gameModal.style.opacity = '0';
+        setTimeout(() => {
+            gameModal.style.display = 'none';
+        }, 300);
+    }
+
+    // Ajout d'un gestionnaire d'événements pour le bouton de fermeture du modal du jeu
+    document.querySelector('#gameModal .close').addEventListener('click', closeGameModal);
 
     // Initialisation de l'affichage des bootcamps
     displayBootcamps();
@@ -187,6 +208,23 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = countdownDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        countdownTimer.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+        if (distance < 0) {
+            countdownTimer.innerHTML = 'Le bootcamp a commencé!';
+        }
+    }
+
+
     // Animation au scroll pour les éléments
     function animateOnScroll() {
         const elements = document.querySelectorAll('.bootcamp-item, .hero-content');
@@ -199,7 +237,26 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    setInterval(updateCountdown, 1000);
     window.addEventListener('scroll', animateOnScroll);
     animateOnScroll(); // Appel initial pour les éléments déjà visibles
 });
 
+// Fonction globale pour afficher le formulaire d'inscription
+// Cette fonction sera appelée depuis le jeu lorsque toutes les étapes seront complétées
+window.showInscriptionForm = function () {
+    console.log("Affichage du formulaire d'inscription après le jeu");
+    const gameModal = document.getElementById('gameModal');
+    const inscriptionModal = document.getElementById('bootcampModal');
+
+    // Fermer le modal du jeu
+    gameModal.style.opacity = '0';
+    setTimeout(() => {
+        gameModal.style.display = 'none';
+        // Ouvrir le modal d'inscription
+        inscriptionModal.style.display = 'block';
+        setTimeout(() => {
+            inscriptionModal.style.opacity = '1';
+        }, 10);
+    }, 300);
+}
