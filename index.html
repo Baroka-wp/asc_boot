@@ -20,7 +20,7 @@
                     <span>Samurai Tech /></span>
                 </div>
                 <nav>
-                    <ul class="nav-links">
+                    <ul class="nav-links" aria-label="Navigation principale">
                         <li><a href="#bootcamps">Nos Aventures</a></li>
                         <li><a href="#objectifs">Mission</a></li>
                         <li><a href="#about">Qui sommes-nous</a></li>
@@ -28,11 +28,11 @@
                         <li><a href="#" class="contact-button">Contact</a></li>
                     </ul>
                 </nav>
-                <div class="hamburger">
+                <button class="hamburger" aria-label="Menu">
                     <span></span>
                     <span></span>
                     <span></span>
-                </div>
+                </button>
             </div>
         </header>
 
@@ -55,18 +55,14 @@
             <section id="countdown" class="countdown">
                 <div class="container">
                     <h2>Prochain Bootcamp dans :</h2>
-                    <div id="countdown-timer">
-                        <!-- Countdown timer will go here -->
-                    </div>
+                    <div id="countdown-timer" aria-live="polite"></div>
                 </div>
             </section>
 
             <section id="bootcamps" class="bootcamps">
                 <div class="container">
                     <h2>Choisis ta voie de Samurai</h2>
-                    <div id="bootcampsList" class="bootcamp-grid">
-                        <!-- Les bootcamps seront injectés ici par JavaScript -->
-                    </div>
+                    <div id="bootcampsList" class="bootcamp-grid"></div>
                 </div>
             </section>
 
@@ -111,111 +107,123 @@
                         class="cta-button cta-button-contact">Contactez-nous</a>
                 </div>
             </section>
-        </main>
 
-        <!-- Modal pour les détails des bootcamps et l'inscription initiale -->
-        <div id="bootcampModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2 id="modalTitle"></h2>
-                <div id="modalDescription"></div>
-                <form id="inscriptionForm">
-                    <input type="text" name="nom" placeholder="Ton nom"
-                        required>
-                    <input type="text" name="prenom" placeholder="Ton prénom"
-                        required>
-                    <input type="number" name="age" placeholder="Ton âge"
-                        required>
-                    <select name="niveauEtude" required>
-                        <option value>Ton niveau scolaire</option>
-                        <option value="college">Collège</option>
-                        <option value="lycee">Lycée</option>
-                    </select>
-                    <input type="tel" name="telephone"
-                        placeholder="Numéro de téléphone d'un parent" required>
-                    <button type="submit">Rejoindre l'aventure</button>
-                </form>
-            </div>
-        </div>
-
-        <!-- Modal pour le jeu du Labyrinthe du Shogun -->
-        <div id="gameModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>Le Labyrinthe du Shogun</h2>
-                <div id="timer">2:00</div>
-                <canvas id="gameCanvas"></canvas>
-                <div id="gameControls" style="display: none;">
-                    <input type="text" id="equationInput"
-                        placeholder="Votre réponse">
-                    <button id="submitAnswer">Valider</button>
+            <!-- Modal pour les détails des bootcamps et l'inscription initiale -->
+            <div id="bootcampModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" aria-label="Fermer">&times;</span>
+                    <h2 id="modalTitle"></h2>
+                    <div id="modalDescription"></div>
+                    <form id="inscriptionForm"
+                        aria-label="Formulaire d'inscription">
+                        <input type="text" name="nom" placeholder="Ton nom"
+                            required aria-required="true">
+                        <input type="text" name="prenom"
+                            placeholder="Ton prénom" required
+                            aria-required="true">
+                        <input type="number" name="age" placeholder="Ton âge"
+                            required aria-required="true">
+                        <select name="niveauEtude" required
+                            aria-required="true">
+                            <option value>Ton niveau scolaire</option>
+                            <option value="college">Collège</option>
+                            <option value="lycee">Lycée</option>
+                        </select>
+                        <input type="tel" name="telephone"
+                            placeholder="Numéro de téléphone d'un parent"
+                            required aria-required="true">
+                        <button type="submit">Rejoindre l'aventure</button>
+                    </form>
                 </div>
             </div>
-        </div>
 
-        <!-- Modal de contact -->
-        <div id="contactModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>Contactez-nous</h2>
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <h3>Site Web</h3>
-                        <a href="https://africasamurai.com/"
-                            target="_blank">africasamurai.com</a>
+            <!-- Modal pour le jeu du Labyrinthe du Shogun -->
+            <div id="gameModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" aria-label="Fermer">&times;</span>
+                    <h2>Le Labyrinthe du Shogun</h2>
+                    <div id="timer" aria-live="polite">2:00</div>
+                    <canvas id="gameCanvas" role="img"
+                        aria-label="Jeu du labyrinthe"></canvas>
+                    <div id="gameControls" style="display: none;">
+                        <input type="text" id="equationInput"
+                            placeholder="Votre réponse"
+                            aria-label="Votre réponse">
+                        <button id="submitAnswer">Valider</button>
                     </div>
-                    <div class="contact-item">
-                        <h3>Téléphone</h3>
-                        <a href="tel:+22967153974">+229 67 15 39 74</a>
-                    </div>
-                    <div class="contact-item">
-                        <h3>Email</h3>
-                        <a
-                            href="mailto:birotori@gmail.com">birotori@gmail.com</a>
-                    </div>
-                </div>
-                <div class="social-links">
-                    <a href="https://www.facebook.com/AfricaSamurai"
-                        target="_blank" class="social-icon">Facebook</a>
-                    <a href="https://www.linkedin.com/company/africasamurai"
-                        target="_blank" class="social-icon">LinkedIn</a>
                 </div>
             </div>
-        </div>
 
-        <footer>
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-logo">Samurai Tech /></div>
-                    <div class="footer-links">
-                        <h4>Liens Rapides</h4>
-                        <a href="#bootcamps">Nos Bootcamps</a>
-                        <a href="#objectifs">Objectifs</a>
-                        <a href="#about">À Propos</a>
-                        <a href="#contact">Contact</a>
+            <!-- Modal de contact -->
+            <div id="contactModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" aria-label="Fermer">&times;</span>
+                    <h2>Contactez-nous</h2>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <h3>Site Web</h3>
+                            <a href="https://africasamurai.com/"
+                                target="_blank">africasamurai.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <h3>Téléphone</h3>
+                            <a href="tel:+22967153974">+229 67 15 39 74</a>
+                        </div>
+                        <div class="contact-item">
+                            <h3>Email</h3>
+                            <a
+                                href="mailto:birotori@gmail.com">birotori@gmail.com</a>
+                        </div>
                     </div>
-                    <div class="footer-newsletter">
-                        <h4>Restez Informé</h4>
-                        <p>Inscrivez-vous à notre newsletter pour les dernières
-                            nouvelles et mises à jour :</p>
-                        <form class="newsletter-form">
-                            <input type="email"
-                                placeholder="Votre adresse email">
-                            <button type="submit">S'abonner</button>
-                        </form>
-                    </div>
-                </div>
-                <div class="footer-bottom">
-                    <p>&copy; 2024 Bootcamps Éducatifs Benino-Japonais. Tous
-                        droits réservés.</p>
                     <div class="social-links">
-                        <a href="#" class="social-icon">FB</a>
-                        <a href="#" class="social-icon">TW</a>
-                        <a href="#" class="social-icon">IG</a>
-                        <a href="#" class="social-icon">LN</a>
+                        <a href="https://www.facebook.com/AfricaSamurai"
+                            target="_blank" class="social-icon"
+                            aria-label="Facebook">Facebook</a>
+                        <a href="https://www.linkedin.com/company/africasamurai"
+                            target="_blank" class="social-icon"
+                            aria-label="LinkedIn">LinkedIn</a>
                     </div>
                 </div>
             </div>
-        </footer>
-    </body>
-</html>
+
+            <footer>
+                <div class="container">
+                    <div class="footer-content">
+                        <div class="footer-logo">Samurai Tech /></div>
+                        <div class="footer-links">
+                            <h4>Liens Rapides</h4>
+                            <a href="#bootcamps">Nos Bootcamps</a>
+                            <a href="#objectifs">Objectifs</a>
+                            <a href="#about">À Propos</a>
+                            <a href="#contact">Contact</a>
+                        </div>
+                        <div class="footer-newsletter">
+                            <h4>Restez Informé</h4>
+                            <p>Inscrivez-vous à notre newsletter pour les
+                                dernières nouvelles et mises à jour :</p>
+                            <form class="newsletter-form">
+                                <input type="email"
+                                    placeholder="Votre adresse email"
+                                    aria-label="Votre adresse email">
+                                <button type="submit">S'abonner</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <p>&copy; 2024 Bootcamps Éducatifs Benino-Japonais. Tous
+                            droits réservés.</p>
+                        <div class="social-links">
+                            <a href="#" class="social-icon"
+                                aria-label="Facebook">FB</a>
+                            <a href="#" class="social-icon"
+                                aria-label="Twitter">TW</a>
+                            <a href="#" class="social-icon"
+                                aria-label="Instagram">IG</a>
+                            <a href="#" class="social-icon"
+                                aria-label="LinkedIn">LN</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </body>
+    </html>
