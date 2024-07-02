@@ -8,15 +8,15 @@
         <link
             href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
             rel="stylesheet">
-        <link
-            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
             rel="stylesheet">
+        <script type="module" src="script.js" defer></script>
     </head>
     <body>
         <header>
             <div class="container">
                 <div class="logo">
-                    <img class="logo" src="logo.png" alt="ASC Logo">
+                    <img src="logo.png" alt="ASC Logo">
                     <span>Samurai Tech /></span>
                 </div>
                 <nav>
@@ -50,6 +50,15 @@
                     </div>
                 </div>
                 <div class="hero-background"></div>
+            </section>
+
+            <section id="countdown" class="countdown">
+                <div class="container">
+                    <h2>Prochain Bootcamp dans :</h2>
+                    <div id="countdown-timer">
+                        <!-- Countdown timer will go here -->
+                    </div>
+                </div>
             </section>
 
             <section id="bootcamps" class="bootcamps">
@@ -98,10 +107,13 @@
                         approche immersive et pratique, nos participants sont
                         préparés à exceller dans un monde de plus en plus
                         interconnecté.</p>
-                    <a href="#" class="cta-button cta-button-contact">Contactez-nous</a>
+                    <a href="#"
+                        class="cta-button cta-button-contact">Contactez-nous</a>
                 </div>
             </section>
         </main>
+
+        <!-- Modal pour les détails des bootcamps et l'inscription initiale -->
         <div id="bootcampModal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
@@ -126,7 +138,22 @@
             </div>
         </div>
 
-        <!-- Ajoutez ce modal à la fin du body, juste avant le script -->
+        <!-- Modal pour le jeu du Labyrinthe du Shogun -->
+        <div id="gameModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Le Labyrinthe du Shogun</h2>
+                <div id="timer">2:00</div>
+                <canvas id="gameCanvas"></canvas>
+                <div id="gameControls" style="display: none;">
+                    <input type="text" id="equationInput"
+                        placeholder="Votre réponse">
+                    <button id="submitAnswer">Valider</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de contact -->
         <div id="contactModal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
@@ -190,7 +217,5 @@
                 </div>
             </div>
         </footer>
-
-        <script src="script.js" defer></script>
     </body>
 </html>
